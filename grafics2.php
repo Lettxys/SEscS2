@@ -1,5 +1,5 @@
 <?php include 'listar.php';
-include 'conexaobd.php';
+include 'conexao.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +25,7 @@ include 'conexaobd.php';
         
           <?php
           include 'conexaobd.php';
-          $sql2 = mysqli_query($connection, "SELECT curso, count(alergiasInpN) as qtd FROM fichas WHERE curso LIKE '%enf%' GROUP BY curso UNION SELECT curso, count(alergiasInpN) as qtd FROM fichas WHERE curso LIKE '%info%' GROUP BY curso UNION SELECT curso, count(alergiasInpN) as qtd FROM fichas WHERE curso LIKE '%com%' GROUP BY curso UNION SELECT curso, count(alergiasInpN) as qtd FROM fichas WHERE curso LIKE '%adm%' GROUP BY curso ORDER BY qtd ASC;  ");
+          $sql2 = mysqli_query($connection, "SELECT curso, count(alergiasInpN) as qtd FROM Dados WHERE curso LIKE '%enf%' GROUP BY curso UNION SELECT curso, count(alergiasInpN) as qtd FROM Dados WHERE curso LIKE '%info%' GROUP BY curso UNION SELECT curso, count(alergiasInpN) as qtd FROM Dados WHERE curso LIKE '%com%' GROUP BY curso UNION SELECT curso, count(alergiasInpN) as qtd FROM Dados WHERE curso LIKE '%adm%' GROUP BY curso ORDER BY qtd ASC;  ");
          
           while ($dados = mysqli_fetch_array($sql2) ) {
             $curso =  $dados['curso'];
@@ -61,7 +61,7 @@ include 'conexaobd.php';
         
           <?php
           include 'conexaobd.php';
-          $sql2 = mysqli_query($connection, "SELECT curso, count(restAlInpN) as qtd FROM fichas WHERE curso LIKE '%enf%' GROUP BY curso UNION SELECT curso, count(restAlInpN) as qtd FROM fichas WHERE curso LIKE '%info%' GROUP BY curso UNION SELECT curso, count(restAlInpN) as qtd FROM fichas WHERE curso LIKE '%com%' GROUP BY curso UNION SELECT curso, count(restAlInpN) as qtd FROM fichas WHERE curso LIKE '%adm%' GROUP BY curso ORDER BY qtd ASC;   ");
+          $sql2 = mysqli_query($connection, "SELECT curso, count(restAlInpN) as qtd FROM Dados WHERE curso LIKE '%enf%' GROUP BY curso UNION SELECT curso, count(restAlInpN) as qtd FROM Dados WHERE curso LIKE '%info%' GROUP BY curso UNION SELECT curso, count(restAlInpN) as qtd FROM Dados WHERE curso LIKE '%com%' GROUP BY curso UNION SELECT curso, count(restAlInpN) as qtd FROM Dados WHERE curso LIKE '%adm%' GROUP BY curso ORDER BY qtd ASC;   ");
          
           while ($dados = mysqli_fetch_array($sql2) ) {
             $curso =  $dados['curso'];
@@ -161,7 +161,7 @@ include 'conexaobd.php';
 						<td style="text-align: center; border-color: inherit;"><?php if($usuario['alergiasInpN']!= null){
               echo $usuario['alergiasInpN'];
             } else if($usuario['alergiasInpN'] = 'NULL'){
-              echo '---';
+              echo '-----';
             } ?></td>
             <td style="text-align: center; border-color: inherit;"><?php if($usuario['restAlInpN']!= null){
               echo $usuario['restAlInpN'];
